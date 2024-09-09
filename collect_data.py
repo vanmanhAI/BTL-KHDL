@@ -1,4 +1,4 @@
-
+import datetime
 import scrapy
 import json
 
@@ -20,10 +20,13 @@ class collect_data(scrapy.Spider):
             
             name = response.xpath(path).css('h3.title::text').getall()[1].strip()
             DistrictAndCity = response.xpath(path).css('div.post-address span::text').get().strip().split(', ')
-            Date = response.xpath(path).css('div > div > span::text').get().strip()
+            Date = response.xpath(path).css('div:last-of-type > div:first-of-type > span::text').get().strip()
             price = response.xpath(path).css('div:first-of-type > div > span.price::text').get().strip()
             square = response.xpath(path).css('div:first-of-type > div > span.feature-item::text').getall()[1].strip()
             Id = response.xpath(pathSub).css('a::attr(href)').get().strip().split('.')[0].split('-')[-1].strip()
+            
+            if Date == "Hôm nay":
+                Date = datetime.datetime.now().strftime("%d/%m/%Y")
             
                    
             yield {
