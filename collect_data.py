@@ -7,7 +7,7 @@ class collect_data(scrapy.Spider):
 
     def __init__(self):
         self.page_count = 1
-        self.num_page = 80 #Num of page need to get data
+        self.num_page = 800 #Num of page need to get data
 
     allowed_domains = ["thuephongtro.com"]
     start_urls = ['https://thuephongtro.com/cho-thue-phong-tro-ho-chi-minh?page=1']
